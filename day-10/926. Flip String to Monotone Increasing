@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int minFlipsMonoIncr(string s) {
+        int flip_count = 0, ones = 0;
+        for(char c : s) {
+            if(c == '1') {
+                ones++;
+            } else {
+                if(ones > 0) {
+                    flip_count++;
+                    if(flip_count > ones) {
+                        flip_count = ones;
+                    }
+                }
+            }
+        }
+        return flip_count;
+    }
+};
