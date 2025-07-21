@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string makeFancyString(string s) {
+        string ans = "";
+        int count = 0;
+        char prev = ' ';
+
+        for (char c : s) {
+            if (c == prev) {
+                count++;
+            } else {
+                count = 1;
+                prev = c;
+            }
+
+            if (count < 3) {
+                ans += c;
+            }
+        }
+
+        return ans;
+    }
+};
