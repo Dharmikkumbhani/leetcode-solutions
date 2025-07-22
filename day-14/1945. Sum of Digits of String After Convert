@@ -1,0 +1,28 @@
+class Solution {
+public:
+
+int sumDigits(string s) {
+    int sum = 0;
+    for (char ch : s) {
+        sum += ch - '0'; 
+    }
+    return sum;
+}
+
+    int getLucky(string s, int k) {
+        string str = "";
+        int n = s.length();
+        for(char ch:s){
+            int pos = ch - 'a' + 1;
+            str += to_string(pos);
+        }
+        
+
+        while (k--) {
+            int sum = sumDigits(str);
+            str = to_string(sum);  
+        }
+
+        return stoi(str);
+    }
+};
