@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int m1[256], m2[256];
+        fill(begin(m1), end(m1), -1);
+        fill(begin(m2), end(m2), -1);
+        int n = s.size();
+        for (int i = 0; i < n; ++i) {
+            if (m1[s[i]] != m2[t[i]]) return false;
+            m1[s[i]] = i;
+            m2[t[i]] = i;
+        }
+        return true;
+    }
+
+};
