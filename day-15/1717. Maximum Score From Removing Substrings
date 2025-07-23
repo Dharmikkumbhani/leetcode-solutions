@@ -1,0 +1,53 @@
+class Solution {
+public:
+
+string removeOccurance(string &s,int x,string key,int &count){
+        int n = s.length();
+        int i = 0;
+        stack<char>st;
+
+        while(i < n){
+            if(st.empty()){
+                st.push(s[i]);
+            }
+            else{
+                if(st.top() == key[0] && s[i] == key[1]){
+                    st.pop();
+                    count += x;
+                }
+                else{
+                    st.push(s[i]);
+                }
+            }
+            i++;
+        }
+        string ans = "";
+        
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+
+    int maximumGain(string s, int x, int y) {
+        string key1, key2;
+        int count = 0;
+        string ans;
+
+        if (x >= y) {
+            key1 = "ab";
+            key2 = "ba";
+            ans = removeOccurance(s, x, key1, count);
+            ans = removeOccurance(ans, y, key2, count);
+        } else {
+            key1 = "ba";
+            key2 = "ab";
+            ans = removeOccurance(s, y, key1, count);
+            ans = removeOccurance(ans, x, key2, count);
+        }
+        return count;
+    }
+
+};
