@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char,int>m;
+        int min = INT_MAX;
+        for(int i=0;i<s.length();i++){
+            if(m.find(s[i]) != m.end()){
+                m[s[i]] = -1;
+            }
+            else{
+                m[s[i]] = i;
+            }
+        }
+
+        for(auto pair:m){
+            if(pair.second != -1 && min > pair.second){
+                min = pair.second;
+            }
+        }
+        if(min == INT_MAX) return -1;
+        return min;
+    }
+};
