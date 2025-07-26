@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3, vector<int>& nums4) {
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        sort(nums3.begin(),nums3.end());
+        sort(nums4.begin(),nums4.end());
+
+        unordered_map<int,int>m;
+
+        for(int x:nums1){
+            for(int y:nums2){
+                m[x+y]++;
+            }
+        }
+
+        int count = 0;
+
+        for(int x:nums3){
+            for(int y:nums4){
+                int key = -1*(x+y);
+                if(m.find(key) != m.end()){
+                    count += m[key];
+                }
+            }
+        }
+        return count;
+    }
+
+};
