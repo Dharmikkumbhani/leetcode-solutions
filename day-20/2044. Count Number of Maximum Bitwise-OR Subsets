@@ -1,0 +1,28 @@
+class Solution {
+public:
+
+    void findCount(int i, vector<int>& nums, int currOR, int& count, int finalOr) {
+        if (i == nums.size()) {
+            if (currOR == finalOr) count++;
+            return;
+        }
+
+        findCount(i + 1, nums, currOR | nums[i], count, finalOr);
+
+        findCount(i + 1, nums, currOR, count, finalOr);
+    }
+
+    int countMaxOrSubsets(vector<int>& nums) {
+        int finalOr = 0;
+        int n = nums.size();
+
+        for(int i=0;i<n;i++){
+            finalOr = finalOr | nums[i];
+        }
+
+        
+        int count = 0;
+        findCount(0,nums,0,count,finalOr);
+        return count;
+    }
+};
