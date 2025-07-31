@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        deque<int>dq;
+        int i = 0;
+
+        for(int num:nums){
+            if(num == 0){
+                dq.push_front(num);
+                i++;
+            }
+            else if(num == 2){
+                dq.push_back(num);
+            }
+            else{
+                dq.insert(dq.begin()+i,num);
+            }
+        }
+        i=0;
+        for(int num:dq){
+            nums[i] = num;
+            i++;
+        }
+        
+    }
+};
