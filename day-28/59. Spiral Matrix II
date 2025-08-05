@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>>arr(n,vector<int>(n,0));
+
+        int top = 0;
+        int left = 0;
+        int bottom = n-1;
+        int right = n-1;
+        int direction = 0;
+        int count = 1;
+
+        while(left <= right && top <= bottom){
+            if(direction == 0){
+                for(int col = left;col <= right; col++){
+                    arr[top][col] = count;
+                    count++;
+                }
+                top++;
+            }
+            else if(direction == 1){
+                for(int row = top; row <= bottom; row++){
+                    arr[row][right] = count;
+                    count++;
+                }
+                right--;
+            }
+            else if(direction == 2){
+                for(int col = right; col >= left; col--){
+                    arr[bottom][col] = count;
+                    count++;
+                }
+                bottom--;
+            }
+            else{
+                for(int row = bottom; row >= top; row--){
+                    arr[row][left] = count;
+                    count++;
+                }
+                left++;
+            }
+            direction = (direction + 1) % 4;
+        }
+        return arr;
+    }
+};
